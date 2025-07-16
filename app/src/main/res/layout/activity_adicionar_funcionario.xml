@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome completo"/>
+
+        <EditText
+            android:id="@+id/etDataNascimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data de Nascimento (YYYY-MM-DD)"
+            android:inputType="date"/>
+
+        <EditText
+            android:id="@+id/etCpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CPF"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/etSetor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Setor"/>
+
+        <EditText
+            android:id="@+id/etFuncao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Função"/>
+
+        <EditText
+            android:id="@+id/etDataAdmissao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Data de Admissão (YYYY-MM-DD)"
+            android:inputType="date"/>
+
+        <Button
+            android:id="@+id/btnSalvarFuncionario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar Funcionário"
+            android:layout_marginTop="24dp"/>
+    </LinearLayout>
+</ScrollView>
