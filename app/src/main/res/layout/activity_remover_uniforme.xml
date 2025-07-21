@@ -3,20 +3,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#314B58">
 
     <EditText
         android:id="@+id/etTipoRemove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:hint="Tipo de uniforme para remover"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="#FFFFFF"
+        android:textColorHint ="#FFFFFF"
+        android:backgroundTint="#EB8F2B"/>
 
     <Button
         android:id="@+id/btnRemoveUni"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Remover Uniforme"
-        android:layout_marginTop="16dp" />
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#EB8F2B"
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>

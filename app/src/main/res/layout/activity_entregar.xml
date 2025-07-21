@@ -2,6 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#314B58"
     android:padding="16dp">
 
     <LinearLayout
@@ -10,48 +12,72 @@
         android:layout_height="wrap_content">
 
         <!-- Funcionário -->
-        <TextView android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Funcionário"/>
+            android:text="Funcionário"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"/>
+
         <Spinner
             android:id="@+id/spinnerFuncionarios"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:popupBackground="#EB8F2B"
+            android:layout_marginBottom="12dp"/>
 
         <!-- Uniforme -->
-        <TextView android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Uniforme"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
             android:layout_marginTop="12dp"/>
+
         <Spinner
             android:id="@+id/spinnerUniformes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:popupBackground="#EB8F2B"
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Quantidade agora é Spinner -->
-        <TextView android:layout_width="wrap_content"
+        <!-- Quantidade -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quantidade"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
             android:layout_marginTop="12dp"/>
+
         <Spinner
             android:id="@+id/spinnerQuantidade"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:popupBackground="#EB8F2B"
+            android:layout_marginBottom="12dp"/>
 
-        <!-- Data -->
+        <!-- Data da entrega -->
         <EditText
             android:id="@+id/etDataEntrega"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
             android:hint="Data da entrega (YYYY-MM-DD)"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
             android:layout_marginTop="12dp"/>
 
-        <Button
+        <!-- Botão Registrar Entrega -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEntregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Registrar Entrega"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#EB8F2B"
+            app:cornerRadius="8dp"
             android:layout_marginTop="16dp"/>
 
     </LinearLayout>

@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/tools"
     card:cardCornerRadius="8dp"
+    card:cardBackgroundColor="#EB8F2B"
     android:layout_marginBottom="8dp"
-    android:padding="12dp"
-    app:ignore="NamespaceTypo">
-    <com.google.android.material.card.MaterialCardView
+    android:padding="12dp">
+
+    <!-- background of the content area -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/corner_radius"
-        android:layout_marginBottom="@dimen/margin_standard"/>
-
-    <LinearLayout
-        android:padding="@dimen/padding_standard"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:background="#314B58"
+        android:padding="16dp">
 
         <TextView
             style="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -26,28 +23,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Funcionário: Fulano"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:id="@+id/tvUniforme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Uniforme: Camisa P"/>
+            android:text="Uniforme: Camisa P"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:id="@+id/tvQuantidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quantidade: 2"/>
+            android:text="Quantidade: 2"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:id="@+id/tvData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data: 2025-07-14"/>
+            android:text="Data: 2025-07-14"
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

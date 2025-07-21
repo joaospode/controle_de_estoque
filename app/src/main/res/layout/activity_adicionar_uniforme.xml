@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#314B58"
     android:padding="16dp">
 
     <LinearLayout
@@ -13,21 +16,30 @@
             android:id="@+id/etTipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tipo do uniforme"/>
+            android:hint="Tipo do uniforme"
+            android:textColorHint ="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
 
         <EditText
             android:id="@+id/etCa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="CA (Certificado de Aprovação)"
-            android:layout_marginTop="8dp"/>
+            android:textColorHint ="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSalvarUniforme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Salvar Uniforme"
-            android:layout_marginTop="16dp"/>
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#EB8F2B"/>
 
     </LinearLayout>
 </ScrollView>

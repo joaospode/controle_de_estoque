@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#314B58"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp">
@@ -11,26 +14,36 @@
         android:layout_height="wrap_content"
         android:text="O que deseja adicionar?"
         android:textSize="18sp"
+        android:textColor="#FFFFFF"
         android:layout_marginBottom="24dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddFuncionario"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Funcionário"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#EB8F2B"
         android:layout_marginBottom="16dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddUniforme"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Uniforme"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#EB8F2B"
         android:layout_marginBottom="16dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddEstoque"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Estoque"/>
+        android:text="Estoque"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#EB8F2B"/>
 
 </LinearLayout>

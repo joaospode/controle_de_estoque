@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#314B58"
     android:padding="16dp">
 
     <LinearLayout
@@ -13,46 +16,72 @@
             android:id="@+id/etNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome completo"/>
+            android:hint="Nome completo"
+            android:textColorHint ="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/etDataNascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Data de Nascimento (YYYY-MM-DD)"
-            android:inputType="date"/>
+            android:inputType="date"
+            android:textColorHint ="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/etCpf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="CPF"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:textColorHint ="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/etSetor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Setor"/>
+            android:hint="Setor"
+            android:textColorHint ="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/etFuncao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Função"/>
+            android:hint="Função"
+            android:textColorHint ="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/etDataAdmissao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Data de Admissão (YYYY-MM-DD)"
-            android:inputType="date"/>
+            android:inputType="date"
+            android:textColorHint ="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="24dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSalvarFuncionario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Salvar Funcionário"
-            android:layout_marginTop="24dp"/>
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#EB8F2B"/>
+
     </LinearLayout>
 </ScrollView>

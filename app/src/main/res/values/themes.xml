@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema base sem ActionBar -->
+    <style name="Theme.ControleDeEstoque" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- janela -->
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <!-- AppBar, Botões, etc. -->
+        <item name="colorPrimary">@color/colorButton</item>
+        <item name="colorOnPrimary">@color/colorOnButton</item>
+        <!-- texto geral -->
+        <item name="android:textColor">@color/colorOnButton</item>
+    </style>
+</resources>
