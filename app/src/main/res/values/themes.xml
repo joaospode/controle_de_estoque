@@ -10,4 +10,8 @@
         <!-- texto geral -->
         <item name="android:textColor">@color/colorOnButton</item>
     </style>
+    <style name="RoundedButton" parent="Widget.MaterialComponents.Button">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
 </resources>
