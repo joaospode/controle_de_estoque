@@ -10,6 +10,7 @@
         android:id="@+id/etCpfRemove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:hint="CPF do funcionário para remover"
         android:inputType="text"
         android:textColor="#FFFFFF"

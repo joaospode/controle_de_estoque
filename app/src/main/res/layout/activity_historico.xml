@@ -1,25 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/rootHistorico"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="30dp"
-    android:background="#314B58"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
     android:padding="16dp">
 
+    <!-- Filtro por Funcionário -->
+    <EditText
+        android:id="@+id/etFilterFuncionario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buscar por funcionário"
+        android:inputType="text"
+        android:backgroundTint="@color/colorButton"
+        android:textColor="@color/colorOnButton"
+        android:textColorHint="@color/colorOnButton"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Filtro por Uniforme -->
+    <EditText
+        android:id="@+id/etFilterUniforme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buscar por uniforme"
+        android:inputType="text"
+        android:backgroundTint="@color/colorButton"
+        android:textColor="@color/colorOnButton"
+        android:textColorHint="@color/colorOnButton"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Botão de Aplicar Filtro -->
+    <Button
+        android:id="@+id/btnFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aplicar filtro"
+        android:backgroundTint="@color/colorButton"
+        android:textColor="@color/colorOnButton"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Texto quando não houver resultados -->
     <TextView
         android:id="@+id/tvEmpty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nenhuma entrega registrada."
+        android:text="Nenhuma entrega encontrada."
         android:visibility="gone"
         android:gravity="center"
         android:textSize="16sp"
-        android:textColor="#FFFFFF"/>
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="8dp"/>
 
+    <!-- Lista de Histórico -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>

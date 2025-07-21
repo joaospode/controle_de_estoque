@@ -10,6 +10,7 @@
         android:id="@+id/etTipoRemove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:autofillHints=""
         android:hint="Tipo de uniforme para remover"
         android:inputType="text"

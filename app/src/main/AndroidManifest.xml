@@ -66,6 +66,9 @@
             android:name=".ui.AdicionarEstoque"
             android:label="Adicionar Estoque"/>
 
+        <activity android:name=".ui.ListaFuncionario"/>
+        <activity android:name=".ui.ListaUniforme"/>
+
     </application>
 
 </manifest>
