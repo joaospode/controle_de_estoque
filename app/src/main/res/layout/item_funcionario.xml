@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:backgroundTint="@color/colorButton"
-    android:padding="12dp">
+    android:layout_marginTop="20dp"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="#EEEEEE"
+    android:layout_marginBottom="8dp">
 
     <TextView
-        android:id="@+id/tvNomeFuncionario"
+        android:id="@+id/tvNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorOnButton"
+        android:text="Nome Completo"
         android:textStyle="bold"
-        android:textSize="16sp"/>
-</com.google.android.material.card.MaterialCardView>
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvFuncao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Função"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvSetor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Setor"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data de admissão"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/layoutListaUniforme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/tvEmptyUniformes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nenhum uniforme cadastrado."
-        android:gravity="center"
+        android:text="Nenhum uniforme encontrado."
+        android:textAlignment="center"
         android:visibility="gone"
+        android:textColor="#FF0000"
         android:textSize="16sp"
-        android:textColor="@android:color/darker_gray"/>
+        android:layout_marginBottom="8dp" />
 
-    <ListView
-        android:id="@+id/lvUniformes"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUniformes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

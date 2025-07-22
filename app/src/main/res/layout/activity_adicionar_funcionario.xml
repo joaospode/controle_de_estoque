@@ -11,14 +11,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="50dp">
 
         <EditText
             android:id="@+id/etNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nome completo"
-            android:textColorHint ="#FFFFFF"
+            android:textColorHint="#FFFFFF"
             android:textColor="#FFFFFF"
             android:backgroundTint="#FFFFFF"
             android:layout_marginBottom="12dp"/>
@@ -27,9 +27,10 @@
             android:id="@+id/etDataNascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Data de Nascimento (YYYY-MM-DD)"
-            android:inputType="date"
-            android:textColorHint ="#FFFFFF"
+            android:hint="Data de Nascimento"
+            android:focusable="false"
+            android:inputType="none"
+            android:textColorHint="#FFFFFF"
             android:textColor="#FFFFFF"
             android:backgroundTint="#FFFFFF"
             android:layout_marginBottom="12dp"/>
@@ -40,38 +41,35 @@
             android:layout_height="wrap_content"
             android:hint="CPF"
             android:inputType="text"
-            android:textColorHint ="#FFFFFF"
+            android:textColorHint="#FFFFFF"
             android:textColor="#FFFFFF"
             android:backgroundTint="#FFFFFF"
             android:layout_marginBottom="12dp"/>
 
-        <EditText
-            android:id="@+id/etSetor"
+        <Spinner
+            android:id="@+id/spSetor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Setor"
-            android:textColorHint ="#FFFFFF"
-            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#FFFFFF"
-            android:layout_marginBottom="12dp"/>
+            android:popupBackground="#FFFFFF"/>
 
-        <EditText
-            android:id="@+id/etFuncao"
+        <Spinner
+            android:id="@+id/spFuncao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Função"
-            android:textColorHint ="#FFFFFF"
-            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#FFFFFF"
-            android:layout_marginBottom="12dp"/>
+            android:popupBackground="#FFFFFF"/>
 
         <EditText
             android:id="@+id/etDataAdmissao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Data de Admissão (YYYY-MM-DD)"
-            android:inputType="date"
-            android:textColorHint ="#FFFFFF"
+            android:hint="Data de Admissão"
+            android:focusable="false"
+            android:inputType="none"
+            android:textColorHint="#FFFFFF"
             android:textColor="#FFFFFF"
             android:backgroundTint="#FFFFFF"
             android:layout_marginBottom="24dp"/>

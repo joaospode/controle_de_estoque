@@ -9,9 +9,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.controledeestoque.R;
 import com.example.controledeestoque.data.DatabaseHelper;
+import com.example.controledeestoque.model.EntregaItem;
 import com.example.controledeestoque.model.Funcionario;
 import com.example.controledeestoque.model.Uniforme;
 
@@ -22,71 +25,86 @@ import java.util.List;
 import java.util.Locale;
 
 public class Entregar extends AppCompatActivity {
-    private Spinner spFunc, spUni, spQtd;
+
+    private Spinner spFunc;
     private EditText etData;
+    private RecyclerView rvUniformes;
+    private EntregaUniformeAdapter adapter;
     private DatabaseHelper db;
+    private Button btnEntregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entregar);
 
-        db      = new DatabaseHelper(this);
-        spFunc  = findViewById(R.id.spinnerFuncionarios);
-        spUni   = findViewById(R.id.spinnerUniformes);
-        spQtd   = findViewById(R.id.spinnerQuantidade);
-        etData  = findViewById(R.id.etDataEntrega);
-        Button btn = findViewById(R.id.btnEntregar);
+        db = new DatabaseHelper(this);
+        spFunc = findViewById(R.id.spinnerFuncionarios);
+        etData = findViewById(R.id.etDataEntrega);
+        rvUniformes = findViewById(R.id.rvUniformes);
+        btnEntregar = findViewById(R.id.btnEntregar);
 
-        // Popula funcionários e uniformes (igual antes)
+        carregarFuncionarios();
+        carregarUniformes();
+
+        etData.setOnClickListener(v -> showDatePicker());
+
+        btnEntregar.setOnClickListener(v -> registrarEntregas());
+    }
+
+    private void carregarFuncionarios() {
         List<Funcionario> funcs = db.getAllFuncionarios();
         ArrayAdapter<Funcionario> adapterF = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, funcs
         );
         adapterF.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spFunc.setAdapter(adapterF);
+    }
 
+    private void carregarUniformes() {
         List<Uniforme> unis = db.getAllUniformes();
-        ArrayAdapter<Uniforme> adapterU = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, unis
-        );
-        adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spUni.setAdapter(adapterU);
+        List<EntregaItem> entregaItens = new ArrayList<>();
 
-        // Popula spinner de quantidade (1 a 20)
-        List<String> qtyList = new ArrayList<>();
-        for (int i = 1; i <= 20; i++) qtyList.add(String.valueOf(i));
-        ArrayAdapter<String> adapterQ = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, qtyList
-        );
-        adapterQ.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spQtd.setAdapter(adapterQ);
+        for (Uniforme u : unis) {
+            entregaItens.add(new EntregaItem(u.getId(), u.getTipo()));
+        }
 
-        // DatePicker
-        etData.setOnClickListener(v -> showDatePicker());
+        adapter = new EntregaUniformeAdapter(entregaItens);
+        rvUniformes.setLayoutManager(new LinearLayoutManager(this));
+        rvUniformes.setAdapter(adapter);
+    }
 
-        // Registro
-        btn.setOnClickListener(v -> {
-            try {
-                Funcionario f = (Funcionario) spFunc.getSelectedItem();
-                Uniforme u    = (Uniforme) spUni.getSelectedItem();
-                int qtd       = Integer.parseInt((String) spQtd.getSelectedItem());
-                String date   = etData.getText().toString();
+    private void registrarEntregas() {
+        try {
+            Funcionario f = (Funcionario) spFunc.getSelectedItem();
+            String data = etData.getText().toString();
 
-                long id = db.insertEntrega(f.getId(), u.getId(), qtd, date);
-                if (id > 0) {
-                    Toast.makeText(this, "Entrega registrada (ID="+id+")",
-                            Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(this, "Erro ao registrar entrega.",
-                            Toast.LENGTH_LONG).show();
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "Preencha todos os campos corretamente.",
-                        Toast.LENGTH_SHORT).show();
+            if (f == null || data.isEmpty()) {
+                Toast.makeText(this, "Preencha funcionário e data.", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
+
+            List<EntregaItem> itens = adapter.getItens();
+            int entregasFeitas = 0;
+
+            for (EntregaItem item : itens) {
+                int qtd = item.getQuantidade();
+                if (qtd > 0) {
+                    long id = db.insertEntrega(f.getId(), item.getUniformeId(), qtd, data);
+                    if (id > 0) entregasFeitas++;
+                }
+            }
+
+            if (entregasFeitas > 0) {
+                Toast.makeText(this, "Entrega registrada com sucesso!", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                Toast.makeText(this, "Nenhum uniforme foi selecionado para entrega.", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Erro ao registrar entrega.", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void showDatePicker() {

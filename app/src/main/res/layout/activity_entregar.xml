@@ -6,80 +6,37 @@
     android:background="#314B58"
     android:padding="16dp">
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <!-- Funcionário -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Funcionário"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"/>
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
         <Spinner
             android:id="@+id/spinnerFuncionarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:popupBackground="#EB8F2B"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginBottom="8dp"/>
 
-        <!-- Uniforme -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Uniforme"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp"/>
-
-        <Spinner
-            android:id="@+id/spinnerUniformes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:popupBackground="#EB8F2B"
-            android:layout_marginBottom="12dp"/>
-
-        <!-- Quantidade -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quantidade"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:layout_marginTop="12dp"/>
-
-        <Spinner
-            android:id="@+id/spinnerQuantidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:popupBackground="#EB8F2B"
-            android:layout_marginBottom="12dp"/>
-
-        <!-- Data da entrega -->
         <EditText
             android:id="@+id/etDataEntrega"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Data da entrega"
             android:focusable="false"
-            android:hint="Data da entrega (YYYY-MM-DD)"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginBottom="8dp" />
 
-        <!-- Botão Registrar Entrega -->
-        <com.google.android.material.button.MaterialButton
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvUniformes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="8dp" />
+
+        <Button
             android:id="@+id/btnEntregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registrar Entrega"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="#EB8F2B"
-            app:cornerRadius="8dp"
-            android:layout_marginTop="16dp"/>
-
+            android:text="Entregar" />
     </LinearLayout>
 </ScrollView>

@@ -5,13 +5,37 @@ public class Uniforme {
     private String tipo;
     private String ca;
 
-    public Uniforme() { }
+    private int quantidadeEstoque; // vindo da tabela estoque
 
-    // getters e setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
-    public String getCa() { return ca; }
-    public void setCa(String ca) { this.ca = ca; }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getCa() {
+        return ca;
+    }
+
+    public void setCa(String ca) {
+        this.ca = ca;
+    }
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
 }

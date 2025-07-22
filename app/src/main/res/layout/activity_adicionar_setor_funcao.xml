@@ -13,38 +13,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp">
 
-        <TextView
-            android:layout_width="82dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Uniforme"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spinnerUniformes"
+        <EditText
+            android:id="@+id/etSetor"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="12dp"
-            android:popupBackground="#EB8F2B" />
+            android:layout_height="wrap_content"
+            android:hint="Nome do Setor"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="16dp"/>
 
         <EditText
-            android:id="@+id/etQuantidade"
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:layout_marginBottom="24dp"
-            android:backgroundTint="#FFFFFF"
-            android:hint="Quantidade a adicionar"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSalvarEstoque"
-            style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/etFuncao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adicionar ao Estoque"
+            android:hint="Nome da Função"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginBottom="24dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSalvarSetorFuncao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar Setor e Função"
             android:textColor="#FFFFFF"
             app:backgroundTint="#EB8F2B"/>
 

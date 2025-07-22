@@ -22,6 +22,11 @@ public class Adicionar extends AppCompatActivity {
                 startActivity(new Intent(this, AdicionarUniforme.class))
         );
 
+        Button btnSetorFuncao = findViewById(R.id.btnAddSetorFuncao);
+        btnSetorFuncao.setOnClickListener(v ->
+                startActivity(new Intent(this, AdicionarSetorFuncao.class))
+        );
+
         findViewById(R.id.btnAddEstoque).setOnClickListener(v ->
                 startActivity(new Intent(Adicionar.this, AdicionarEstoque.class))
         );
