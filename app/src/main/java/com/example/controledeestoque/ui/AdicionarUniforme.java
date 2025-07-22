@@ -40,7 +40,7 @@ public class AdicionarUniforme extends AppCompatActivity {
 
         Uniforme u = new Uniforme();
         u.setTipo(tipo);
-        u.setCa(Integer.parseInt(ca));
+        u.setCa(String.valueOf(Integer.parseInt(ca)));
 
         long id = dbHelper.insertUniforme(u);
         if (id > 0) {

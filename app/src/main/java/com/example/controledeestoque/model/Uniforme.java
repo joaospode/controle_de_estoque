@@ -1,36 +1,17 @@
 package com.example.controledeestoque.model;
 
 public class Uniforme {
-    public int id;
+    private int id;
     private String tipo;
-    private int ca;
+    private String ca;
 
-    public int getId() {
-        return id;
-    }
+    public Uniforme() { }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public int getCa() {
-        return ca;
-    }
-
-    public void setCa(int ca) {
-        this.ca = ca;
-    }
-
-    @Override
-    public String toString() {
-        return this.getTipo();
-    }
+    // getters e setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
+    public String getCa() { return ca; }
+    public void setCa(String ca) { this.ca = ca; }
 }
