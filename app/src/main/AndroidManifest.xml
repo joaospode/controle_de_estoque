@@ -55,8 +55,6 @@
         <activity
             android:name=".ui.RemoverEstoque"
             android:label="Retirar Estoque"/>
-
-        <!-- Entrega e histórico -->
         <activity
             android:name=".ui.Entregar"
             android:label="Entregar"/>

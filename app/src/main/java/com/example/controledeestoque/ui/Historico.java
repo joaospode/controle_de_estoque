@@ -12,19 +12,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.controledeestoque.R;
 import com.example.controledeestoque.data.DatabaseHelper;
+import com.example.controledeestoque.model.EntregaGrupo;
 import com.example.controledeestoque.model.HistoricoEntrega;
-import com.example.controledeestoque.ui.HistoricoAdapter;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Historico extends AppCompatActivity {
-    private DatabaseHelper      dbHelper;
-    private EditText            etFilterFuncionario;
-    private EditText            etFilterUniforme;
-    private Button              btnFilter;
-    private RecyclerView        rvHistory;
-    private TextView            tvEmpty;
-    private HistoricoAdapter    adapter;
+    private DatabaseHelper dbHelper;
+    private EditText etFilterFuncionario;
+    private EditText etFilterUniforme;
+    private Button btnFilter;
+    private RecyclerView rvHistory;
+    private TextView tvEmpty;
+    private HistoricoGrupoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +42,56 @@ public class Historico extends AppCompatActivity {
         rvHistory            = findViewById(R.id.rvHistory);
         tvEmpty              = findViewById(R.id.tvEmpty);
 
-        // 2) Configura RecyclerView e Adapter
+        // 2) Configura RecyclerView
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
-        List<HistoricoEntrega> all = dbHelper.getAllDeliveries();
-        adapter = new HistoricoAdapter(all);
-        rvHistory.setAdapter(adapter);
 
-        // 3) Exibe ou oculta mensagem "vazio"
-        toggleEmptyState(all.isEmpty());
+        // 3) Carrega e exibe dados sem filtro
+        loadAndDisplay(null, null);
 
         // 4) Configura o botão de filtro
         btnFilter.setOnClickListener(v -> {
             String funcFilter = etFilterFuncionario.getText().toString().trim();
             String uniFilter  = etFilterUniforme.getText().toString().trim();
-
-            // busca filtrada (você deve ter implementado este método no DatabaseHelper)
-            List<HistoricoEntrega> filtered = dbHelper.getDeliveriesByFilter(funcFilter, uniFilter);
-
-            // atualiza lista e UI
-            adapter.updateList(filtered);
-            toggleEmptyState(filtered == null || filtered.isEmpty());
+            loadAndDisplay(funcFilter, uniFilter);
         });
+    }
+
+    /**
+     * Carrega entregas (com ou sem filtros), agrupa por funcionário+data e atualiza o adapter.
+     */
+    private void loadAndDisplay(String funcFilter, String uniFilter) {
+        List<HistoricoEntrega> all;
+        if ((funcFilter == null || funcFilter.isEmpty()) && (uniFilter == null || uniFilter.isEmpty())) {
+            all = dbHelper.getAllDeliveries();
+        } else {
+            all = dbHelper.getDeliveriesByFilter(funcFilter, uniFilter);
+        }
+
+        // Agrupa por funcionário e data
+        Map<String, EntregaGrupo> map = new LinkedHashMap<>();
+        for (HistoricoEntrega h : all) {
+            String key = h.getFuncionario() + "_" + h.getDataEntrega();
+            if (!map.containsKey(key)) {
+                map.put(key, new EntregaGrupo(
+                        h.getFuncionario(),
+                        h.getDataEntrega(),
+                        new ArrayList<>()
+                ));
+            }
+            map.get(key).getItens().add(h);
+        }
+        List<EntregaGrupo> groups = new ArrayList<>(map.values());
+
+        // Configura ou atualiza o adapter
+        if (adapter == null) {
+            adapter = new HistoricoGrupoAdapter(groups);
+            rvHistory.setAdapter(adapter);
+        } else {
+            adapter.updateList(groups);
+        }
+
+        // Exibe ou oculta mensagem "vazio"
+        toggleEmptyState(groups.isEmpty());
     }
 
     /**
