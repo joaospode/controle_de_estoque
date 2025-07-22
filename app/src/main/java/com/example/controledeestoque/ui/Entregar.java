@@ -166,14 +166,14 @@ public class Entregar extends AppCompatActivity {
     }
 
     // Classe auxiliar para itens de entrega
-    private static class EntregaItem {
+    public static class EntregaItem {
         private final int uniformeId;
         private final int quantidade;
         EntregaItem(int uniformeId, int quantidade) {
             this.uniformeId = uniformeId;
             this.quantidade = quantidade;
         }
-        int getUniformeId() { return uniformeId; }
-        int getQuantidade() { return quantidade; }
+        public int getUniformeId() { return uniformeId; }
+        public int getQuantidade() { return quantidade; }
     }
 }

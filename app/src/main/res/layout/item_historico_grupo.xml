@@ -3,24 +3,39 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
     android:padding="12dp"
     android:background="#314B58"
     android:layout_marginBottom="12dp">
 
-    <TextView
-        android:id="@+id/tvGroupHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+    <!-- Cabeçalho com botão API -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/tvGroupHeader"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnApi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ASSINAR"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#EB8F2B"/>
+    </LinearLayout>
+
+    <!-- Container dos itens de uniforme -->
     <LinearLayout
         android:id="@+id/containerUniformes"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
-
+        android:layout_marginTop="8dp"/>
 </LinearLayout>

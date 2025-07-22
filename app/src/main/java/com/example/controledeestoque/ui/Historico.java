@@ -84,7 +84,7 @@ public class Historico extends AppCompatActivity {
 
         // Configura ou atualiza o adapter
         if (adapter == null) {
-            adapter = new HistoricoGrupoAdapter(groups);
+            adapter = new HistoricoGrupoAdapter(this, groups);
             rvHistory.setAdapter(adapter);
         } else {
             adapter.updateList(groups);
