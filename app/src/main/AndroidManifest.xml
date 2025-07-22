@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.controledeestoque"
-    tools:ignore="ExtraText">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-
+    package="com.example.controledeestoque">
 
     <application
         android:allowBackup="true"
@@ -16,59 +11,71 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ControleDeEstoque">
-        <!-- sua Activity de entrada -->
+
+        <!-- Tela principal -->
         <activity
             android:name=".ui.Main"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <!-- tela de transição “Adicionar” -->
+        <!-- Tela de opções “Adicionar” -->
         <activity
             android:name=".ui.Adicionar"
             android:label="Adicionar"/>
 
-        <!-- cadastros -->
+        <activity
+            android:name=".ui.Remover"
+            android:label="Remover"/>
+
+        <!-- Cadastros -->
         <activity
             android:name=".ui.AdicionarFuncionario"
             android:label="Adicionar Funcionário"/>
         <activity
             android:name=".ui.AdicionarUniforme"
             android:label="Adicionar Uniforme"/>
-
-        <!-- remover, entregar, histórico, configurações -->
         <activity
-            android:name=".ui.Remover"
-            android:label="Remover"/>
+            android:name=".ui.AdicionarEstoque"
+            android:label="Adicionar Estoque"/>
+        <activity
+            android:name=".ui.AdicionarSetorFuncao"
+            android:label="Adicionar Setor/Função"/>
+
+        <!-- Remoções -->
+        <activity
+            android:name=".ui.RemoverFuncionario"
+            android:label="Remover Funcionário"/>
+        <activity
+            android:name=".ui.RemoverUniforme"
+            android:label="Remover Uniforme"/>
+        <activity
+            android:name=".ui.RemoverEstoque"
+            android:label="Retirar Estoque"/>
+
+        <!-- Entrega e histórico -->
         <activity
             android:name=".ui.Entregar"
             android:label="Entregar"/>
         <activity
             android:name=".ui.Historico"
             android:label="Histórico"/>
+
+        <!-- Configurações -->
         <activity
             android:name=".ui.Configuracoes"
             android:label="Configurações"/>
 
+        <!-- Listagens -->
         <activity
-            android:name=".ui.RemoverEstoque"
-            android:label="Retirar Estoque"/>
-
+            android:name=".ui.ListaFuncionario"
+            android:label="Listar Funcionários"/>
         <activity
-            android:name=".ui.RemoverFuncionario"
-            android:label="Remover Funcionário "/>
-
-        <activity
-            android:name=".ui.AdicionarEstoque"
-            android:label="Adicionar Estoque"/>
-
-        <activity android:name=".ui.ListaFuncionario"/>
-        <activity android:name=".ui.ListaUniforme"/>
+            android:name=".ui.ListaUniforme"
+            android:label="Listar Uniformes"/>
 
     </application>
-
 </manifest>

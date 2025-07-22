@@ -13,15 +13,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp">
 
-        <EditText
-            android:id="@+id/etSetor"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecionar Setor existente"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerSetores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome do Setor"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ou criar novo setor"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etNovoSetor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Novo Setor (opcional)"
             android:textColorHint="#FFFFFF"
             android:textColor="#FFFFFF"
             android:backgroundTint="#FFFFFF"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="24dp"/>
 
         <EditText
             android:id="@+id/etFuncao"
@@ -37,7 +58,7 @@
             android:id="@+id/btnSalvarSetorFuncao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Salvar Setor e Função"
+            android:text="Salvar Função no Setor"
             android:textColor="#FFFFFF"
             app:backgroundTint="#EB8F2B"/>
 

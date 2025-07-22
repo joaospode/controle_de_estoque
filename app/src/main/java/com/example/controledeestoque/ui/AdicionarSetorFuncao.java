@@ -1,9 +1,10 @@
 package com.example.controledeestoque.ui;
 
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,46 +12,78 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.controledeestoque.R;
 import com.example.controledeestoque.data.DatabaseHelper;
 
-public class AdicionarSetorFuncao{
-    private EditText etSetor, etFuncao;
+import java.util.List;
+
+public class AdicionarSetorFuncao extends AppCompatActivity {
+
+    private Spinner spinnerSetores;
+    private EditText etNovoSetor, etFuncao;
     private Button btnSalvar;
     private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar_setor_funcao);
-
-        etSetor = findViewById(R.id.etSetor);
-        etFuncao = findViewById(R.id.etFuncao);
-        btnSalvar = findViewById(R.id.btnSalvarSetorFuncao);
+        setContentView(R.layout.activity_adicionar_setor_funcao);
 
         db = new DatabaseHelper(this);
 
-        btnSalvar.setOnClickListener(v -> salvar());
+        spinnerSetores = findViewById(R.id.spinnerSetores);
+        etNovoSetor     = findViewById(R.id.etNovoSetor);
+        etFuncao        = findViewById(R.id.etFuncao);
+        btnSalvar       = findViewById(R.id.btnSalvarSetorFuncao);
+
+        carregarSetores();
+
+        btnSalvar.setOnClickListener(v -> salvarFuncaoNoSetor());
     }
 
-    private void salvar() {
-        String setor = etSetor.getText().toString().trim();
-        String funcao = etFuncao.getText().toString().trim();
+    private void carregarSetores() {
+        List<String> setores = db.getAllSetores();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                setores
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSetores.setAdapter(adapter);
+    }
 
-        if (TextUtils.isEmpty(setor) || TextUtils.isEmpty(funcao)) {
-            Toast.makeText(this, "Preencha os dois campos.", Toast.LENGTH_SHORT).show();
+    private void salvarFuncaoNoSetor() {
+        String setorSelecionado = spinnerSetores.getSelectedItem() != null
+                ? spinnerSetores.getSelectedItem().toString() : null;
+        String novoSetor = etNovoSetor.getText().toString().trim();
+        String funcao    = etFuncao.getText().toString().trim();
+
+        if (funcao.isEmpty()) {
+            Toast.makeText(this, "Digite o nome da função.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        long setorId = db.insertSetor(setor);
+        String setorFinal = novoSetor.isEmpty() ? setorSelecionado : novoSetor;
+
+        if (setorFinal == null || setorFinal.isEmpty()) {
+            Toast.makeText(this, "Selecione ou insira um setor.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!novoSetor.isEmpty()) {
+            db.insertSetor(novoSetor);  // adiciona novo setor, se houver
+            carregarSetores(); // atualiza spinner
+        }
+
+        long setorId = db.getSetorIdByNome(setorFinal);  // ✔ correto: setorId é long
         if (setorId == -1) {
-            Toast.makeText(this, "Erro ao inserir setor. Pode já existir.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erro ao localizar o setor.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        long funcaoId = db.insertFuncao(funcao, (int) setorId);
-        if (funcaoId > 0) {
-            Toast.makeText(this, "Setor e função cadastrados.", Toast.LENGTH_SHORT).show();
-            finish();
+        boolean ok = db.insertFuncao(funcao, (int) setorId);
+        if (ok) {
+            Toast.makeText(this, "Função adicionada ao setor.", Toast.LENGTH_SHORT).show();
+            etFuncao.setText("");
         } else {
-            Toast.makeText(this, "Erro ao inserir função.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Erro ao salvar função.", Toast.LENGTH_SHORT).show();
         }
     }
 }

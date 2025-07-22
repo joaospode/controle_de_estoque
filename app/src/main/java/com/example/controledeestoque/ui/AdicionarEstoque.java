@@ -6,16 +6,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.controledeestoque.R;
 import com.example.controledeestoque.data.DatabaseHelper;
 import com.example.controledeestoque.model.Uniforme;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdicionarEstoque extends AppCompatActivity {
     private Spinner spUniformes;
     private EditText etQuantidade;
     private DatabaseHelper db;
+    private List<Uniforme> uniformes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +30,29 @@ public class AdicionarEstoque extends AppCompatActivity {
         db = new DatabaseHelper(this);
         spUniformes = findViewById(R.id.spinnerUniformes);
         etQuantidade = findViewById(R.id.etQuantidade);
-        Button btn = findViewById(R.id.btnSalvarEstoque);
+        Button btnSalvar = findViewById(R.id.btnSalvarEstoque);
 
-        // popula spinner de uniformes
-        List<Uniforme> list = db.getAllUniformes();
-        ArrayAdapter<Uniforme> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, list
+        // Carrega a lista de uniformes e seus tipos para o Spinner
+        uniformes = db.getAllUniformes();
+        List<String> tipos = new ArrayList<>();
+        for (Uniforme u : uniformes) {
+            tipos.add(u.getTipo());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                tipos
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spUniformes.setAdapter(adapter);
 
-        btn.setOnClickListener(v -> {
+        btnSalvar.setOnClickListener(v -> {
             try {
-                Uniforme u = (Uniforme) spUniformes.getSelectedItem();
-                int q = Integer.parseInt(etQuantidade.getText().toString());
+                int pos = spUniformes.getSelectedItemPosition();
+                Uniforme u = uniformes.get(pos);
+                int q = Integer.parseInt(etQuantidade.getText().toString().trim());
+
                 boolean ok = db.addStock(u.getId(), q);
                 Toast.makeText(
                         this,

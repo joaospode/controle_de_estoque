@@ -1,101 +1,89 @@
 package com.example.controledeestoque.ui;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.example.controledeestoque.R;
+import com.example.controledeestoque.util.BackupUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Configuracoes extends AppCompatActivity {
     private Button btnBackup;
     private Button btnListaFuncionarios;
     private Button btnListaUniformes;
-    private ActivityResultLauncher<String> storagePermissionLauncher;
+
+    // Launcher para criar documento no sistema (Downloads ou local escolhido)
+    private ActivityResultLauncher<Intent> createDocumentLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracoes);
 
-        // buttons
-        btnBackup             = findViewById(R.id.btnBackup);
+        btnBackup = findViewById(R.id.btnBackup);
         btnListaFuncionarios = findViewById(R.id.btnListaFuncionarios);
-        btnListaUniformes     = findViewById(R.id.btnListaUniformes);
+        btnListaUniformes = findViewById(R.id.btnListaUniformes);
 
-        // launcher de permissão
-        storagePermissionLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestPermission(),
-                isGranted -> {
-                    if (isGranted) doBackup();
-                    else Toast.makeText(this, "Permissão negada.", Toast.LENGTH_SHORT).show();
+        // Inicializa launcher para ACTION_CREATE_DOCUMENT
+        createDocumentLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Uri uri = result.getData().getData();
+                        if (uri != null) {
+                            saveBackupToUri(uri);
+                        }
+                    }
                 }
         );
 
-        // listener backup
+        // Botão de backup dispara diálogo de salvar arquivo
         btnBackup.setOnClickListener(v -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (ContextCompat.checkSelfPermission(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    storagePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                } else {
-                    doBackup();
-                }
-            } else {
-                doBackup();
-            }
+            String fileName = "backup_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
+                    .format(new Date()) + ".txt";
+            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TITLE, fileName);
+            createDocumentLauncher.launch(intent);
         });
 
-        // listener lista de funcionários
         btnListaFuncionarios.setOnClickListener(v ->
                 startActivity(new Intent(this, ListaFuncionario.class))
         );
 
-        // listener lista de uniformes
         btnListaUniformes.setOnClickListener(v ->
                 startActivity(new Intent(this, ListaUniforme.class))
         );
     }
 
-    private void doBackup() {
-        File dbFile = getDatabasePath("uniformes.db");
-        File downloads = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS
-        );
-        File outFile = new File(downloads, "uniformes_backup.db");
-
-        try (FileInputStream fis = new FileInputStream(dbFile);
-             FileOutputStream fos = new FileOutputStream(outFile)) {
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = fis.read(buffer)) > 0) {
-                fos.write(buffer, 0, length);
-            }
-            fos.flush();
+    private void saveBackupToUri(Uri uri) {
+        try (OutputStream os = getContentResolver().openOutputStream(uri)) {
+            if (os == null) throw new IOException("Cannot open output stream");
+            String content = BackupUtils.generateBackupText(this);
+            os.write(content.getBytes(StandardCharsets.UTF_8));
+            os.flush();
             Toast.makeText(this,
-                    "Backup salvo em: " + outFile.getAbsolutePath(),
+                    "Backup salvo em: " + uri.toString(),
                     Toast.LENGTH_LONG
             ).show();
-
         } catch (IOException e) {
+            e.printStackTrace();
             Toast.makeText(this,
-                    "Erro ao fazer backup: " + e.getMessage(),
+                    "Erro ao salvar backup: " + e.getMessage(),
                     Toast.LENGTH_LONG
             ).show();
         }

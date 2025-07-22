@@ -26,4 +26,9 @@ public class Funcionario {
     public void setFuncao(String funcao) { this.funcao = funcao; }
     public String getDataAdmissao() { return dataAdmissao; }
     public void setDataAdmissao(String dataAdmissao) { this.dataAdmissao = dataAdmissao; }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

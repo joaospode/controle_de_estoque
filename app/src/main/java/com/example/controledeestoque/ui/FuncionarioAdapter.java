@@ -38,10 +38,10 @@ public class FuncionarioAdapter extends RecyclerView.Adapter<FuncionarioAdapter.
     public void onBindViewHolder(@NonNull FuncionarioAdapter.ViewHolder holder, int position) {
         Funcionario f = funcionarios.get(position);
 
-        holder.tvNome.setText(f.getNome()); // ou f.getNome() + " " + f.getSobrenome() se separado
-        holder.tvFuncao.setText("Função: " + f.getFuncao());
-        holder.tvSetor.setText("Setor: " + f.getSetor());
-        holder.tvData.setText("Admissão: " + f.getDataAdmissao());
+        holder.tvNome.setText(f.getNome());
+        holder.tvFuncao.setText("Função: "    + f.getFuncao());
+        holder.tvSetor.setText("Setor: "      + f.getSetor());
+        holder.tvData.setText("Admissão: "    + f.getDataAdmissao());
     }
 
     @Override

@@ -6,17 +6,17 @@
     android:background="#314B58"
     android:padding="16dp">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
         <Spinner
             android:id="@+id/spinnerFuncionarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="12dp" />
 
         <EditText
             android:id="@+id/etDataEntrega"
@@ -24,19 +24,35 @@
             android:layout_height="wrap_content"
             android:hint="Data da entrega"
             android:focusable="false"
-            android:layout_marginBottom="8dp" />
+            android:inputType="none"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvUniformes"
+        <LinearLayout
+            android:id="@+id/containerUniformes"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginBottom="8dp" />
+            android:layout_height="wrap_content" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddUniforme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="Adicionar Outro Uniforme"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#EB8F2B" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEntregar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Entregar" />
+            android:text="Entregar"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#EB8F2B" />
+
     </LinearLayout>
 </ScrollView>
